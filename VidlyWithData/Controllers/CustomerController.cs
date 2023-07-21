@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using VidlyWithData.Models;
 using VidlyWithData.ViewModel;
+using System.Web.Routing;
 
 namespace VidlyWithData.Controllers
 {
@@ -13,6 +14,7 @@ namespace VidlyWithData.Controllers
         public CustomerController()
         {
             _context = new ApplicationDbContext();
+         
         }
 
         protected override void Dispose(bool disposing)
@@ -20,12 +22,13 @@ namespace VidlyWithData.Controllers
             base.Dispose(disposing);
 
         }
-
         // GET: Customer
         public ViewResult Index()
         {
 
             var customer = _context.Customers.Include(c => c.MembershipType).ToList();
+
+
 
             return View(customer);
         }
