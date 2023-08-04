@@ -98,5 +98,14 @@ namespace VidlyWithData.Controllers
 
             return View("MovieForm",viewModel);
         }
+
+        [HttpPost]
+        public ActionResult MovieSearch(string name)
+        {
+            var movieInDb = _context.Movies.Where(c => c.Name.Contains(name)).ToList();
+         
+             
+            return PartialView(movieInDb);
+        }
     }
 }
